@@ -1,0 +1,19 @@
+﻿@model EventEase.Models.Booking
+
+<h1>Create Booking</h1>
+<form asp-action="Create">
+    <div class="form-group mb-2">
+        <label>Customer Name</label>
+        <input asp-for="CustomerName" class="form-control" />
+    </div>
+    <div class="form-group mb-2">
+        <label>Customer Email</label>
+        <input asp-for="CustomerEmail" type="email" class="form-control" />
+    </div>
+    <div class="form-group mb-2">
+        <label>Booking Date</label>
+        <input asp-for="BookingDate" type="date" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success mt-2">Confirm Booking</button>
+    <a asp-action="Index" class="btn btn-secondary mt-2">Back</a>
+</form>

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<EventEase.Models.Booking>
+
+<h1>All Bookings</h1>
+<p><a asp-action="Create" class="btn btn-primary">Make a New Booking</a></p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Email</th>
+            <th>Booking Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CustomerName</td>
+                <td>@item.CustomerEmail</td>
+                <td>@item.BookingDate.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
