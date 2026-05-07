@@ -23,6 +23,6 @@ EventEase is a web-based application built using ASP.NET Core MVC. It is designe
 5. Press **F5** or click the Green Play button to run the application.
 
 ## Submission Details
-* **Student Number:** [YOUR STUDENT NUMBER]
-* **Module:** PRSE
-* **Institution:** Varsity College
+* **Student Number:st10321125
+* **Module:** cloud
+* **Institution:emeris
