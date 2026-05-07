@@ -1,11 +1,15 @@
 ﻿@model IEnumerable<EventEase.Models.Event>
 
 <h1>All Events</h1>
-<p><a asp-action="Create" class="btn btn-primary">Add New Event</a></p>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Event</a>
+</p>
 
 <table class="table">
     <thead>
         <tr>
+            <th>Photo</th>
             <th>Name</th>
             <th>Description</th>
             <th>Date</th>
@@ -15,6 +19,16 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                        <img src="@item.ImageUrl" alt="@item.EventName" style="width:100px; height:auto; border-radius:15px; border: 2px solid var(--candy-pink);" />
+                    }
+                    else
+                    {
+                        <span>No Photo</span>
+                    }
+                </td>
                 <td>@item.EventName</td>
                 <td>@item.Description</td>
                 <td>@item.EventDate.ToShortDateString()</td>

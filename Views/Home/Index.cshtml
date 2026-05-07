@@ -2,7 +2,58 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero-container position-relative mb-5 shadow-lg" style="border-radius: 40px; overflow: hidden; height: 550px; border: 8px solid white;">
+    
+    <img src="https://images.unsplash.com/photo-1530103862676-fa8c91311c1e?auto=format&fit=crop&q=80&w=2000"
+         alt="Candy Pastel Celebration"
+         class="position-absolute w-100 h-100"
+         style="object-fit: cover; z-index: 1;">
+
+    <div class="position-absolute w-100 h-100"
+         style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(3px); z-index: 2;"></div>
+
+    <div class="container position-relative h-100 d-flex flex-column justify-content-center align-items-center text-center" style="z-index: 3;">
+        <h1 class="display-1 mb-3" style="font-family: 'Playfair Display', serif; font-style: italic; color: #5a4a5e; text-shadow: 2px 2px 8px rgba(255,255,255,0.9);">
+            Sweet Memories Start Here.
+        </h1>
+        <p class="lead mb-4 fw-bold p-2 rounded-pill bg-white bg-opacity-50 px-4" style="color: #5a4a5e; letter-spacing: 1px;">
+            Durban's most delightful event management platform.
+        </p>
+        <div class="d-flex gap-3">
+            <a asp-controller="Bookings" asp-action="Create" class="btn btn-primary btn-lg px-5 shadow-lg fw-bold">Book Now</a>
+            <a asp-controller="Venues" asp-action="Index" class="btn btn-outline-dark border-2 rounded-pill px-5 bg-white bg-opacity-25 fw-bold">View Venues</a>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row g-4 text-center">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm p-4" style="background-color: var(--mint); border-radius: 30px;">
+                <div class="mb-3">
+                    <i class="bi bi-balloon-heart-fill text-success fs-1"></i>
+                </div>
+                <h3 class="fw-bold" style="font-family: 'Playfair Display', serif;">Premium Venues</h3>
+                <p class="text-muted small">Explore dreamy locations across KwaZulu-Natal with a single click.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm p-4" style="background-color: var(--lavender); border-radius: 30px;">
+                <div class="mb-3">
+                    <i class="bi bi-magic text-primary fs-1"></i>
+                </div>
+                <h3 class="fw-bold" style="font-family: 'Playfair Display', serif;">Smart Bookings</h3>
+                <p class="text-muted small">Effortless coordination with our automated date validation system.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm p-4" style="background-color: var(--candy-pink); border-radius: 30px;">
+                <div class="mb-3">
+                    <i class="bi bi-stars text-danger fs-1"></i>
+                </div>
+                <h3 class="fw-bold" style="font-family: 'Playfair Display', serif;">Cloud Magic</h3>
+                <p class="text-muted small">Beautiful gallery experiences powered by Azure Blob Storage.</p>
+            </div>
+        </div>
+    </div>
 </div>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventEase.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260415185804_UpdateEventDate")]
-    partial class UpdateEventDate
+    [Migration("20260507144507_AddImageUrlToVenues")]
+    partial class AddImageUrlToVenues
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,14 +33,19 @@ namespace EventEase.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime>("BookingDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("CustomerEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EventId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("VenueId")
                         .HasColumnType("int");
@@ -71,6 +76,10 @@ namespace EventEase.Migrations
 
                     b.Property<string>("EventName")
                         .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EventId");
@@ -98,7 +107,8 @@ namespace EventEase.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("VenueId");
 
@@ -108,20 +118,30 @@ namespace EventEase.Migrations
             modelBuilder.Entity("EventEase.Models.Booking", b =>
                 {
                     b.HasOne("EventEase.Models.Event", "Event")
-                        .WithMany()
+                        .WithMany("Bookings")
                         .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("EventEase.Models.Venue", "Venue")
-                        .WithMany()
+                        .WithMany("Bookings")
                         .HasForeignKey("VenueId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Event");
 
                     b.Navigation("Venue");
+                });
+
+            modelBuilder.Entity("EventEase.Models.Event", b =>
+                {
+                    b.Navigation("Bookings");
+                });
+
+            modelBuilder.Entity("EventEase.Models.Venue", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }

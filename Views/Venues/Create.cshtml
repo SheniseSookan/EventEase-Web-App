@@ -1,36 +1,73 @@
 ﻿@model EventEase.Models.Venue
 
 @{
-    ViewData["Title"] = "Create Venue";
+    ViewData["Title"] = "Add New Venue";
 }
 
-<h1>Create Venue</h1>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <a asp-action="Index" class="text-decoration-none mb-3 d-inline-block text-muted">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div class="form-group mb-2">
-                <label asp-for="Name" class="control-label">Venue Name</label>
-                <input asp-for="Name" class="form-control" />
-            </div>
-            <div class="form-group mb-2">
-                <label asp-for="Location" class="control-label">Location</label>
-                <input asp-for="Location" class="form-control" />
-            </div>
-            <div class="form-group mb-2">
-                <label asp-for="Capacity" class="control-label">Capacity</label>
-                <input asp-for="Capacity" class="form-control" />
-            </div>
-            
-            <div class="form-group mb-3">
-                <label asp-for="ImageUrl" class="control-label">Image URL</label>
-                <input asp-for="ImageUrl" class="form-control" placeholder="https://via.placeholder.com/150" />
-            </div>
+            <div class="card border-0 shadow-lg rounded-4">
+                <div class="card-header bg-white border-0 pt-4 pb-0 text-center">
+                    <div class="icon-box mb-2 mx-auto" style="width: 60px; height: 60px; background: #eef2ff; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-building-add text-primary fs-3"></i>
+                    </div>
+                    <h2 class="fw-bold text-dark">Add New Venue</h2>
+                    <p class="text-muted small">Register a new location in the system</p>
+                </div>
 
-            <div class="form-group">
-                <input type="submit" value="Save Venue" class="btn btn-success" />
-                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                <div class="card-body p-4 p-md-5">
+                    <form asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Name" class="form-control border-0 bg-light" placeholder="Venue Name" />
+                            <label asp-for="Name">Venue Name</label>
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Location" class="form-control border-0 bg-light" placeholder="Location" />
+                            <label asp-for="Location">Location</label>
+                            <span asp-validation-for="Location" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Capacity" class="form-control border-0 bg-light" placeholder="Max Capacity" type="number" />
+                            <label asp-for="Capacity">Max Capacity</label>
+                            <span asp-validation-for="Capacity" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold small text-uppercase text-muted">Venue Photo (Azurite Storage)</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-0"><i class="bi bi-image"></i></span>
+                                <input type="file" name="imageFile" class="form-control bg-light border-0" accept="image/*" />
+                            </div>
+                            <div class="form-text mt-2" style="font-size: 0.8rem;">
+                                <i class="bi bi-cloud-arrow-up"></i> Files will be saved to your local blob container.
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-5">
+                            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+                                <i class="bi bi-check-circle me-2"></i> Save Venue
+                            </button>
+                            <a asp-action="Index" class="btn btn-link text-muted">Discard Changes</a>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

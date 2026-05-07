@@ -5,7 +5,7 @@
 namespace EventEase.Migrations
 {
     /// <inheritdoc />
-    public partial class AddEventImage : Migration
+    public partial class AddImageUrlToVenues : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
